@@ -1,0 +1,19 @@
+.mtp10
+{
+    margin-top: 10vh;
+}
+
+.centered-col
+{
+    margin: 0 auto;
+}
+
+.centring-row
+{
+    display: flex;
+}
+
+.fixed-action-btn
+{
+    margin: 1rem;
+}

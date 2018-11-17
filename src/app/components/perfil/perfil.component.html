@@ -1,0 +1,61 @@
+<div class="container mtp10">
+    <div class="row">
+        <div class="col m4 offset-m4">
+            <img class="responsive-img" src="usuario.foto || ./../../../assets/imagenes/anonymous_user.png" alt="foto de usuario">
+            <span class="right btn-floating btn-small red darken-4 tooltipped" data-position="left" data-tooltip="Cambiar foto" (click)="subirFoto()" ><i class="material-icons">edit</i></span>
+        </div>
+    </div>
+    <div class="row centring-row">
+        <div class="col centered-col" *ngIf="perfil">
+            <button class="btn" (click)="this.info = true">Información General</button>
+            <button class="btn" (click)="this.info = false">Redes Sociales</button>
+        </div>
+        <div class="col centered-col" *ngIf="!perfil">
+            <button class="btn" (click)="this.publicacion = 'evento'">Eventos</button>
+            <button class="btn" (click)="this.publicacion = 'lugar'">Lugares</button>
+            <button class="btn" (click)="this.publicacion = 'turismo'">Turismo</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col m3">
+            <button class="btn" (click)="this.perfil = true">Perfil</button>
+            <button class="btn" (click)="this.perfil = false">Publicaciones</button>
+        </div>
+        <div class="col m9" *ngIf="perfil && info">
+            <p><b>Nombre: </b> {{ usuario.nombre }}</p>
+            <p><b>Nombre de usuario: </b> {{ usuario.username }}</p>
+            <p><b>Correo: </b> {{ usuario.email }}</p>
+            <p><b>Unido el: </b> {{ usuario.creacion | date }} <span class="right btn-flat btn-small" title="Editar Información"><i class="material-icons">edit</i></span></p>
+        </div>
+        <div class="col m9" *ngIf="perfil && !info">
+            <p><b>Facebook:</b> <span class="right btn-flat btn-small" title="Editar Facebook"><i class="material-icons">edit</i></span></p>
+            <p><span *ngIf="usuario.facebook">{{ usuario.facebook }}</span> </p>
+            <p><b>Instagram: </b> <span class="right btn-flat btn-small" title="Editar Instagram"><i class="material-icons">edit</i></span></p>
+            <p><span *ngIf="usuario.instagram">{{ usuario.instagram }}</span></p>
+            <p><b>Twitter: </b> <span class="right btn-flat btn-small" title="Editar Twitter"><i class="material-icons">edit</i></span></p>
+            <p><span *ngIf="usuario.twitter">{{ usuario.twitter }}</span></p>
+        </div>
+        <div class="col m9" *ngIf="!perfil && publicacion==='evento'">
+            <ng-container *ngIf="usuario.eventos">
+                <p *ngFor="let evento of eventos"><a><b>{{ evento.nombre }}</b></a>  - {{ evento.tipo }} <span class="right btn-flat btn-small" title="Editar evento"><i class="material-icons">edit</i></span></p>
+            </ng-container>
+            <p *ngIf="!usuario.eventos">Usted no ha publicado eventos todavía</p>
+        </div>
+        <div class="col m9" *ngIf="!perfil && publicacion==='lugar'">
+            <ng-container *ngIf="usuario.lugares">
+                <p *ngFor="let lugar of lugares"><a><b>{{ lugar.nombre }}</b></a>  - {{ lugar.tipo }} <span class="right btn-flat btn-small" title="Editar lugar"><i class="material-icons">edit</i></span></p>
+            </ng-container>
+            <p *ngIf="!usuario.lugares">Usted no ha publicado lugares todavía</p>
+        </div>
+        <div class="col m9" *ngIf="!perfil && publicacion==='turismo'">
+            <ng-container *ngIf="usuario.tursimos">
+                <p *ngFor="let turismo of turismos"><a><b>{{ turismo.nombre }}</b></a>  - {{ tursimo.tipo }} <span class="right btn-flat btn-small" title="Editar plan turístico"><i class="material-icons">edit</i></span></p>
+            </ng-container>
+            <p *ngIf="!usuario.turismos">Usted no ha publicado planes turísticos todavía</p>
+        </div>
+    </div>
+</div>
+
+<div class="fixed-action-btn">
+    <a class="btn-floating btn-large red darken-4 tooltipped" data-position="left" data-tooltip="Publica con nosotros" routerLink=""><i class="large material-icons">add</i></a>
+</div>

@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+      <div class="col s4 offset-s4 center-align">
+        <img src="./../../../assets/imagenes/hazpopayan_negro.png" alt="logo mascotapp" id="logo-login" class="responsive-img center-align">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s6 offset-s3">
+        <div class="col s12 input-field" *ngIf="!login">
+          <input type="text" id="nombre" [(ngModel)]="user.nombre">
+          <label for="nombre">Nombre</label>
+        </div>
+        <div class="col s12 input-field">
+          <input type="email" id="email" [(ngModel)]="user.correo">
+          <label for="email">Correo electrónico</label>
+        </div>
+        <div class="col s12" *ngIf="error_pass">
+          <small class="red-text">¡Las contraseñas no coinciden!</small>
+        </div>
+        <div class="col s12 input-field">
+          <input type="password" id="password" [(ngModel)]="password">
+          <label for="password">contraseña</label>
+        </div>
+        <div class="col s12 input-field" *ngIf="!login">
+          <input type="password" id="password2" [(ngModel)]="pass_confirmation">
+          <label for="password2">confirmar contraseña</label>
+        </div>
+        <button class="btn btn-full indigo" *ngIf="login">Ingresar</button>
+        <button class="btn btn-full indigo" *ngIf="!login">Registrarse</button>
+        <div class="col s12 center-align">
+          <p *ngIf="login">¿Aún no tienes cuenta? <a (click)="actionRegister()">Regístrate con tu Email!</a></p>
+          <p *ngIf="!login">¿Ya tienes cuenta? <a (click)="actionRegister()">Ingresa!</a></p>
+        </div>
+      </div>
+    </div>
+  </div>

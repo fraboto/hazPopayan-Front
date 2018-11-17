@@ -1,0 +1,84 @@
+<div class="parallax-container">
+  <div class="parallax">
+    <img class="responsive-img" id="img-home" src="./../../../assets/imagenes/popayan11.jpg">
+  </div>
+</div>
+
+<div class="container row" id="buscador">
+  <form class="col s12">
+    <div class="input-field col s6 offset-s3">
+      <input id="busqueda" type="text" class="validate">
+      <label for="busqueda">¿Qué estás buscando?</label>
+    </div>
+  </form>
+</div>
+
+<div class="section">
+  <div class="row container">
+    <h2 class="header">Restaurantes</h2>
+    <div class="row">
+      <ng-container *ngFor="let evento of eventos">
+        <div class="col s6 m3" *ngIf="evento.tipo==='Restaurante'">
+          <div class="card">
+            <div class="card-image">
+              <img src="./../../../assets/imagenes/logo.png">
+            </div>
+            <div class="card-content">
+              <span class="card-title">{{ evento.nombre }}</span>
+              <p>{{ evento.descripcion }}</p>
+              <p>Ubicación: {{ evento.ubicacion }}</p>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="row container">
+    <h2 class="header">Conciertos</h2>
+    <div class="row">
+      <ng-container *ngFor="let evento of eventos">
+        <div class="col s6 m3" *ngIf="evento.tipo==='Concierto'">
+          <div class="card">
+            <div class="card-image">
+              <img src="./../../../assets/imagenes/popayan11.jpg">
+            </div>
+            <div class="card-content">
+              <span class="card-title">{{ evento.nombre }}</span>
+              <p>{{ evento.descripcion }}</p>
+              <p>Ubicación: {{ evento.ubicacion }}</p>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="row container">
+    <h2 class="header">Turismo</h2>
+    <div class="row">
+      <ng-container *ngFor="let evento of eventos">
+        <div class="col s6 m3" *ngIf="evento.tipo==='Turismo'">
+          <div class="card">
+            <div class="card-image">
+              <img src="./../../../assets/imagenes/popayan8.jpg">
+            </div>
+            <div class="card-content">
+              <span class="card-title">{{ evento.nombre }}</span>
+              <p>{{ evento.descripcion }}</p>
+              <p>Ubicación: {{ evento.ubicacion }}</p>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<div class="fixed-action-btn">
+  <a class="btn-floating btn-large red darken-4 tooltipped" data-position="left" data-tooltip="Publica con nosotros" routerLink=""><i class="large material-icons">add</i></a>
+</div>

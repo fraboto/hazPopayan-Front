@@ -1,0 +1,58 @@
+<div class="navbar-fixed" *ngIf="(router.url !== '/login/login') && (router.url !== '/login/registrate')" [ngClass]="{'posinh': ((router.url !== '/') && (router.url !== '/home'))}">
+  <nav class="transparent z-depth-0" [ngClass]="{'grey darken-3': ((router.url !== '/') && (router.url !== '/home'))}">
+    <div class="nav-wrapper">
+      <ul id="nav-mobile" class="left">
+        <li><a routerLink="login/login">INICIA SESIÓN</a></li>
+        <li><a routerLink="login/registrate">REGÍSTRATE</a></li>
+        <li><a>CERRAR SESIÓN</a></li>
+      </ul>
+      <a routerLink="" class="brand-logo right"><img class="responsive-img" src="./../assets/imagenes/hazpopayan.png" alt="logo hazPopayan"></a>
+    </div>
+  </nav>
+</div>
+
+<router-outlet></router-outlet>
+
+<footer class="page-footer grey darken-3">
+    <div class="container">
+      <div class="row valign-wrapper">
+        <div class="col l3 s6 center-align">
+          <img class="responsive-img" src="./../assets/imagenes/hazpopayan.png" alt="">
+          <!-- <p class="grey-text text-lighten-4">Síguenos en:</p> -->
+        </div>
+        <div class="col l3 s6">
+          <h5 class="white-text">Eventos</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="#!">Música</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Deportes</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Cultura</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Otros</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s6">
+          <h5 class="white-text">Restaurantes</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="#!">Comida Rapida</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Cafés</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Internacional</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Otros</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s6">
+          <h5 class="white-text">Turismo</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="#!">Ecológico</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Museos</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Ciudad Blanca</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Otros</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      © 2014 Copyright Francisco Bohórquez
+      <a class="grey-text text-lighten-4 right" href="#!">https://github.com/fraboto</a>
+      </div>
+    </div>
+  </footer>

@@ -1,0 +1,25 @@
+/* etiquetas */
+.nav-wrapper a
+{
+    font-size: 14px;
+}
+
+/* ids */
+
+/* classes */
+.navbar-fixed
+{
+    position: absolute;
+}
+
+.brand-logo
+{
+    height: inherit;
+    box-sizing: border-box;
+    padding-top: 1rem;
+}
+
+.posinh
+{
+    position: relative;
+}
