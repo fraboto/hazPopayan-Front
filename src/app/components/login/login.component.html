@@ -1,7 +1,9 @@
 <div class="container">
     <div class="row">
       <div class="col s4 offset-s4 center-align">
-        <img src="./../../../assets/imagenes/hazpopayan_negro.png" alt="logo mascotapp" id="logo-login" class="responsive-img center-align">
+        <img src="./../../../assets/imagenes/hazpopayan_negro.png" alt="logo hazpopayan" id="logo-login" class="responsive-img center-align" routerLink="">
+        <h5 *ngIf="login">Ingresa</h5>
+        <h5 *ngIf="!login">Regístrate</h5>
       </div>
     </div>
     <div class="row">

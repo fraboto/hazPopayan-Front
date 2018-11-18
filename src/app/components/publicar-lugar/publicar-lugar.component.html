@@ -1,0 +1,219 @@
+<!-- ¿Qué tipo de lugar? -->
+<div class="row my20vh" *ngIf="!tipo_lugar">
+
+  <div class="col m2">
+    <div class="card" (click)="cambiarTipoLugar('restaurante')">
+      <div class="card-image">
+        <img class="responsive-img" src="./../../../assets/imagenes/restaurante.png">
+      </div>
+      <div class="card-content px10px">
+        <span class="card-title">Restaurante</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col m2 offset-m1">
+    <div class="card" (click)="cambiarTipoLugar('discoteca')">
+      <div class="card-image">
+        <img src="./../../../assets/imagenes/discoteca.png">
+      </div>
+      <div class="card-content">
+        <span class="card-title center-align">Discoteca</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col m2 offset-m1">
+    <div class="card" (click)="cambiarTipoLugar('cafe')">
+      <div class="card-image">
+        <img src="./../../../assets/imagenes/cafe.png">
+      </div>
+      <div class="card-content">
+        <span class="card-title center-align">Café - Bar</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col m3 center-align offset-m1">
+    <h4>¿Qué tipo de lugar desea publicar?</h4>
+  </div>
+
+</div>
+
+<!-- LLENADO DE INFORMACIÓN DE LA PUBLICACIÓN -->
+<div class="row my20vh" *ngIf="tipo_lugar">
+  <div class="row">
+    <div class="col s2 offset-m1">
+      <img class="responsive-img" src="./../../../assets/imagenes/{{ tipo_lugar }}.png">
+      <h5 class="center-align">Publica tu {{ tipo_lugar | titlecase }}</h5>
+    </div>
+
+    <!-- PASO 1 INFO GENERAL DE LA PUBLICACIÓN -->
+    <form class="col s8 offset-m1" *ngIf="paso === 1">
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="nombre" type="text" class="validate" name="nombre" [(ngModel)]="publicacion.nombre">
+          <label for="nombre">Nombre {{ tipo_lugar | titlecase }}*</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="direccion" type="text" class="validate" name="direccion" [(ngModel)]="publicacion.direccion">
+          <label for="direccion">Dirección {{ tipo_lugar | titlecase }}*</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <select multiple (change)="valoresSelect('select-subtipo')" id="select-subtipo">
+            <option value="" disabled selected>Tipo {{ tipo_lugar | titlecase }}*</option>
+            <option *ngFor="let subtipo of subtipos_restaurante" value="{{ subtipo }}">{{ subtipo }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="descripcion" class="materialize-textarea" [(ngModel)]="publicacion.descripcion" name="descripcion"></textarea>
+          <label for="descripcion">Descripción*</label>
+        </div>
+      </div>
+
+      <button class="btn waves-effect waves-light right" type="submit" (click)="siguientePaso()">Siguiente
+        <i class="material-icons right">send</i>
+      </button>
+
+      <button class="btn waves-effect waves-light left red" type="submit" (click)="anteriorPaso()">Atrás
+        <i class="material-icons left">arrow_back</i>
+      </button>
+
+    </form>
+
+    <!-- PASO 2 INFO REDES SOCIALES DE LA PUBLICACIÓN -->
+    <form class="col s8 offset-m1" *ngIf="paso === 2">
+      <h5>Cuéntanos un poco más acerca de <b>{{ publicacion.nombre | uppercase }}</b></h5>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="web" type="text" class="validate" name="web" [(ngModel)]="publicacion.web">
+          <label for="web">Página Web</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="fb" type="text" class="validate" name="fb" [(ngModel)]="publicacion.facebook">
+          <label for="fb">Facebook</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="ig" type="text" class="validate" name="ig" [(ngModel)]="publicacion.instagram">
+          <label for="ig">Instagram</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="twt" type="text" class="validate" name="twt" [(ngModel)]="publicacion.twitter">
+          <label for="twt">Twitter</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="telefono" type="text" class="validate" name="telefono" [(ngModel)]="publicacion.telefono">
+          <label for="telefono">Teléfono</label>
+        </div>
+      </div>
+
+      <button class="btn waves-effect waves-light right" type="submit" (click)="siguientePaso()">Siguiente
+        <i class="material-icons right">send</i>
+      </button>
+
+      <button class="btn waves-effect waves-light left red" type="submit" (click)="anteriorPaso()">Atrás
+        <i class="material-icons left">arrow_back</i>
+      </button>
+
+    </form>
+
+    <!-- PASO 3 INFO DETALLE (HORARIOS, IMÁGENES, VIDEOS, PRECIOS, SERVICIOS) DE LA PUBLICACIÓN -->
+    <form class="col s8 offset-m1" *ngIf="paso === 3">
+
+      <h5>¿Qué servicios ofrece <b>{{ publicacion.nombre | uppercase }}</b>?</h5>
+      <div class="row">
+        <div class="input-field col s12">
+          <select multiple (change)="valoresSelect('select-servicios')" id="select-servicios">
+            <option value="" disabled selected>Servicios ofrecidos*</option>
+            <option *ngFor="let servicio of servicios" value="{{ servicio }}">{{ servicio }}</option>
+          </select>
+        </div>
+      </div>
+
+      <h5>¿En qué horarios ofrece servicio <b>{{ publicacion.nombre | uppercase }}</b>?</h5>
+      <p>¡Note que los horarios están en formato de 24 horas!</p>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="apertura" type="text" class="timepicker" (change)="horarioApertura()">
+          <label for="apertura">Hora de apertura</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="cierre" type="text" class="timepicker" (change)="horarioCierre()">
+          <label for="cierre">Hora de cierre</label>
+        </div>
+      </div>
+
+      <h5>¿Qué precio promedio tiene <b>{{ publicacion.nombre | uppercase }}</b>?</h5>
+      <div class="row">
+        <div class="input-field col s12">
+          <select>
+            <option value="" disabled selected>Precio Promedio de {{ publicacion.nombre | uppercase }}</option>
+            <option *ngFor="let precio of precios_promedio" value="{{ precio.promedio }}">{{ precio.texto }} COP</option>
+          </select>
+        </div>
+      </div>
+
+      <h5>¿Desea agregar fotos de {{ publicacion.nombre | uppercase }}?</h5>
+      <p> Si no agrega fotos, se pondrá una foto por defecto.</p>
+      <div class="file-field input-field">
+        <div class="btn">
+          <span>Subir Foto</span>
+          <input type="file">
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text">
+        </div>
+      </div>
+
+      <button class="btn waves-effect waves-light right" type="submit" (click)="publicar()">Finalizar
+        <i class="material-icons right">publish</i>
+      </button>
+      
+      <button class="btn waves-effect waves-light left red" type="submit" (click)="anteriorPaso()">Atrás
+        <i class="material-icons left">arrow_back</i>
+      </button>
+
+    </form>
+  
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <button class="btn waves-effect waves-light left red" (click)="confirmacionCancelar()">Cancelar publicación
+      <i class="material-icons left">cancel</i>
+    </button>
+  </div>
+</div>
+<!-- LUGAR EVENTO -->
+<div class="row" *ngIf="tipo_lugar === 'evento'">
+  <p>evento</p>
+</div>
+
+<!-- LUGAR TURISMO -->
+<div class="row" *ngIf="tipo_lugar === 'turismo'">
+  <p>plan turístico</p>
+</div>

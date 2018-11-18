@@ -8,7 +8,15 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
 
-  title = 'hazPopayan';
+  window_scroll:boolean = false;
 
-  constructor(private router:Router) { }
+  constructor(private router:Router) { 
+    window.addEventListener('scroll', () => {
+      if (document.body.scrollTop > 320 || document.documentElement.scrollTop > 320) {
+        this.window_scroll = true;
+      } else {
+        this.window_scroll = false;
+      }
+    });
+  }
 }

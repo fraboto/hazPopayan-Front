@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as M from "materialize-css";
 import { Publicacion } from 'src/app/interfaces/publicacion';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -36,9 +37,11 @@ export class HomeComponent implements OnInit {
     }
   ];
   
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
     this.inicializarMaterialize();
   }
 
@@ -51,6 +54,13 @@ export class HomeComponent implements OnInit {
     /* tooltip */
       var elems_tooltip = document.querySelectorAll('.tooltipped');
       var instances_tooltip = M.Tooltip.init(elems_tooltip, {});
+  }
+
+  irPublicar()
+  {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+    this.router.navigate(['/publica']);
   }
 
 }

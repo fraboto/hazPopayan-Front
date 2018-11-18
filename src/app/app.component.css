@@ -23,3 +23,8 @@
 {
     position: relative;
 }
+
+.greyt
+{
+    background-color: rgba(42, 42, 42, 0.75) !important;
+}

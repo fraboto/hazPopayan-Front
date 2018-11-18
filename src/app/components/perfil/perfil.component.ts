@@ -1,5 +1,6 @@
 import { Usuario } from './../../interfaces/usuario';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil',
@@ -44,9 +45,11 @@ export class PerfilComponent implements OnInit {
   info: boolean = true;
   publicacion: string = "evento";
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
     this.inicializarMaterialize();
   }
 
@@ -62,4 +65,10 @@ export class PerfilComponent implements OnInit {
     
   }
 
+  irPublicar()
+  {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+    this.router.navigate(['/publica']);
+  }
 }

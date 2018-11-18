@@ -21,6 +21,8 @@ export class LoginComponent implements OnInit {
   constructor(private router:Router) { }
 
   ngOnInit() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
     if(this.router.url === '/login/login')
     {
       this.login = true;

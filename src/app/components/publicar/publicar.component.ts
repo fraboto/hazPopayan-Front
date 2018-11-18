@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PublicarComponent implements OnInit {
 
+  tipo_publicacion = null;
+
   constructor() { }
 
   ngOnInit() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
   }
-
 }

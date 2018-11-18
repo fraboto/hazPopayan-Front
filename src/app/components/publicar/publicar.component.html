@@ -1,3 +1,41 @@
-<p>
-  publicar works!
-</p>
+<div class="container">
+	
+	<!-- ¿Qué tipo de publicación desea hacer? -->
+	<div class="row my20vh" *ngIf="!tipo_publicacion">
+		<div class="col m2">
+			<div class="card" (click)="tipo_publicacion = 'lugar'">
+				<div class="card-image">
+					<img class="responsive-img" src="./../../../assets/imagenes/lugar2.png">
+				</div>
+				<div class="card-content">
+					<span class="card-title center-align">Lugar</span>
+				</div>
+			</div>
+		</div>
+		<div class="col m2 offset-m1">
+			<div class="card" (click)="tipo_publicacion = 'evento'">
+				<div class="card-image">
+					<img src="./../../../assets/imagenes/event.png">
+				</div>
+				<div class="card-content">
+					<span class="card-title center-align">Evento</span>
+				</div>
+			</div>
+		</div>
+		<div class="col m2 offset-m1">
+			<div class="card" (click)="tipo_publicacion = 'turismo'">
+				<div class="card-image">
+					<img src="./../../../assets/imagenes/turismo.png">
+				</div>
+				<div class="card-content">
+					<span class="card-title center-align">Plan de Turismo</span>
+				</div>
+			</div>
+		</div>
+		<div class="col m3 center-align offset-m1">
+			<h4>¿Qué desea publicar?</h4>
+		</div>
+	</div>
+	
+	<app-publicar-lugar *ngIf="tipo_publicacion === 'lugar'"></app-publicar-lugar>
+</div>

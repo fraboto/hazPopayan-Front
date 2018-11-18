@@ -1,9 +1,9 @@
-<div class="navbar-fixed" *ngIf="(router.url !== '/login/login') && (router.url !== '/login/registrate')" [ngClass]="{'posinh': ((router.url !== '/') && (router.url !== '/home'))}">
-  <nav class="transparent z-depth-0" [ngClass]="{'grey darken-3': ((router.url !== '/') && (router.url !== '/home'))}">
+<div class="navbar-fixed" *ngIf="(router.url !== '/login/login') && (router.url !== '/login/register')" [ngClass]="{'posinh': ((router.url !== '/') && (router.url !== '/home'))}">
+  <nav class="z-depth-0" [ngClass]="{'greyt': (((router.url !== '/') && (router.url !== '/home')) || window_scroll), 'transparent': (((router.url === '/') || (router.url === '/home')) && !window_scroll)}">
     <div class="nav-wrapper">
       <ul id="nav-mobile" class="left">
         <li><a routerLink="login/login">INICIA SESIÓN</a></li>
-        <li><a routerLink="login/registrate">REGÍSTRATE</a></li>
+        <li><a routerLink="login/register">REGÍSTRATE</a></li>
         <li><a>CERRAR SESIÓN</a></li>
       </ul>
       <a routerLink="" class="brand-logo right"><img class="responsive-img" src="./../assets/imagenes/hazpopayan.png" alt="logo hazPopayan"></a>
@@ -13,11 +13,11 @@
 
 <router-outlet></router-outlet>
 
-<footer class="page-footer grey darken-3">
+<footer class="page-footer grey darken-3" *ngIf="(router.url !== '/login/login') && (router.url !== '/login/register')">
     <div class="container">
       <div class="row valign-wrapper">
         <div class="col l3 s6 center-align">
-          <img class="responsive-img" src="./../assets/imagenes/hazpopayan.png" alt="">
+          <img class="responsive-img" src="./../assets/imagenes/hazpopayan.png" alt="" routerLink="/">
           <!-- <p class="grey-text text-lighten-4">Síguenos en:</p> -->
         </div>
         <div class="col l3 s6">

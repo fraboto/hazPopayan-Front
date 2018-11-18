@@ -9,6 +9,8 @@ import { LoginComponent } from './components/login/login.component';
 import { DetalleComponent } from './components/detalle/detalle.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { PublicarComponent } from './components/publicar/publicar.component';
+import { PublicarEventoComponent } from './components/publicar-evento/publicar-evento.component';
+import { PublicarLugarComponent } from './components/publicar-lugar/publicar-lugar.component';
 
 const appRoutes: Routes = [
   {path: '', component:HomeComponent},
@@ -26,7 +28,9 @@ const appRoutes: Routes = [
     LoginComponent,
     DetalleComponent,
     PerfilComponent,
-    PublicarComponent
+    PublicarComponent,
+    PublicarEventoComponent,
+    PublicarLugarComponent
   ],
   imports: [
     BrowserModule,
