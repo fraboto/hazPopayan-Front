@@ -13,7 +13,12 @@
     display: flex;
 }
 
-.fixed-action-btn
+.tooltip
 {
-    margin: 1rem;
+    background-color: rgba(42,42,42,0.8);
+    border-radius: 5px;
+    margin-right: 10px;
+    color: whitesmoke;
+    font-size: 14pt;
+    padding: 5px 15px;
 }

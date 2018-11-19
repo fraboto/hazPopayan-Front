@@ -79,6 +79,7 @@
   </div>
 </div>
 
-<div class="fixed-action-btn">
-  <a class="btn-floating btn-large red darken-4 tooltipped" data-position="left" data-tooltip="Publica con nosotros" (click)="irPublicar()"><i class="large material-icons">add</i></a>
+<div class="fixed-action-btn"> 
+  <p class="tooltip left" *ngIf="tooltip">Publica con nosotros</p>
+  <p class="btn-floating btn-large red darken-4" routerLink="/publica"  (mouseover)="tooltip = true" (mouseout)="tooltip = false"><i class="large material-icons">add</i></p>
 </div>

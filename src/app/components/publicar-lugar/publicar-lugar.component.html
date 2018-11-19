@@ -12,7 +12,7 @@
     </div>
   </div>
 
-  <div class="col m2 offset-m1">
+  <div class="col m2">
     <div class="card" (click)="cambiarTipoLugar('discoteca')">
       <div class="card-image">
         <img src="./../../../assets/imagenes/discoteca.png">
@@ -23,13 +23,24 @@
     </div>
   </div>
 
-  <div class="col m2 offset-m1">
+  <div class="col m2">
+    <div class="card" (click)="cambiarTipoLugar('bar')">
+      <div class="card-image">
+        <img src="./../../../assets/imagenes/bar.png">
+      </div>
+      <div class="card-content">
+        <span class="card-title center-align">Bar</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col m2">
     <div class="card" (click)="cambiarTipoLugar('cafe')">
       <div class="card-image">
         <img src="./../../../assets/imagenes/cafe.png">
       </div>
       <div class="card-content">
-        <span class="card-title center-align">Café - Bar</span>
+        <span class="card-title center-align">Café</span>
       </div>
     </div>
   </div>
@@ -43,21 +54,22 @@
 <!-- LLENADO DE INFORMACIÓN DE LA PUBLICACIÓN -->
 <div class="row my20vh" *ngIf="tipo_lugar">
   <div class="row">
-    <div class="col s2 offset-m1">
+    <div class="col s2 offset-s1">
       <img class="responsive-img" src="./../../../assets/imagenes/{{ tipo_lugar }}.png">
       <h5 class="center-align">Publica tu {{ tipo_lugar | titlecase }}</h5>
     </div>
 
     <!-- PASO 1 INFO GENERAL DE LA PUBLICACIÓN -->
-    <form class="col s8 offset-m1" *ngIf="paso === 1">
+    <form class="col s8 offset-s1" *ngIf="paso === 1">
 
+      <h5>Información general sobre tu publicación</h5>
       <div class="row">
         <div class="input-field col s12">
           <input id="nombre" type="text" class="validate" name="nombre" [(ngModel)]="publicacion.nombre">
           <label for="nombre">Nombre {{ tipo_lugar | titlecase }}*</label>
         </div>
       </div>
-
+      
       <div class="row">
         <div class="input-field col s12">
           <input id="direccion" type="text" class="validate" name="direccion" [(ngModel)]="publicacion.direccion">
@@ -65,11 +77,27 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row" *ngIf="tipo_lugar === 'restaurante'">
         <div class="input-field col s12">
           <select multiple (change)="valoresSelect('select-subtipo')" id="select-subtipo">
             <option value="" disabled selected>Tipo {{ tipo_lugar | titlecase }}*</option>
             <option *ngFor="let subtipo of subtipos_restaurante" value="{{ subtipo }}">{{ subtipo }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="row" *ngIf="tipo_lugar === 'discoteca'">
+        <div class="input-field col s12">
+          <select multiple (change)="valoresSelect('select-subtipo')" id="select-subtipo">
+            <option value="" disabled selected>Tipo {{ tipo_lugar | titlecase }}*</option>
+            <option *ngFor="let subtipo of subtipos_discoteca" value="{{ subtipo }}">{{ subtipo }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="row" *ngIf="tipo_lugar === 'bar'">
+        <div class="input-field col s12">
+          <select multiple (change)="valoresSelect('select-subtipo')" id="select-subtipo">
+            <option value="" disabled selected>Tipo {{ tipo_lugar | titlecase }}*</option>
+            <option *ngFor="let subtipo of subtipos_bar" value="{{ subtipo }}">{{ subtipo }}</option>
           </select>
         </div>
       </div>
@@ -80,14 +108,6 @@
           <label for="descripcion">Descripción*</label>
         </div>
       </div>
-
-      <button class="btn waves-effect waves-light right" type="submit" (click)="siguientePaso()">Siguiente
-        <i class="material-icons right">send</i>
-      </button>
-
-      <button class="btn waves-effect waves-light left red" type="submit" (click)="anteriorPaso()">Atrás
-        <i class="material-icons left">arrow_back</i>
-      </button>
 
     </form>
 
@@ -130,21 +150,13 @@
         </div>
       </div>
 
-      <button class="btn waves-effect waves-light right" type="submit" (click)="siguientePaso()">Siguiente
-        <i class="material-icons right">send</i>
-      </button>
-
-      <button class="btn waves-effect waves-light left red" type="submit" (click)="anteriorPaso()">Atrás
-        <i class="material-icons left">arrow_back</i>
-      </button>
-
     </form>
 
     <!-- PASO 3 INFO DETALLE (HORARIOS, IMÁGENES, VIDEOS, PRECIOS, SERVICIOS) DE LA PUBLICACIÓN -->
     <form class="col s8 offset-m1" *ngIf="paso === 3">
 
-      <h5>¿Qué servicios ofrece <b>{{ publicacion.nombre | uppercase }}</b>?</h5>
       <div class="row">
+        <h5>¿Qué servicios ofrece <b>{{ publicacion.nombre | uppercase }}</b>?</h5>
         <div class="input-field col s12">
           <select multiple (change)="valoresSelect('select-servicios')" id="select-servicios">
             <option value="" disabled selected>Servicios ofrecidos*</option>
@@ -153,9 +165,9 @@
         </div>
       </div>
 
-      <h5>¿En qué horarios ofrece servicio <b>{{ publicacion.nombre | uppercase }}</b>?</h5>
-      <p>¡Note que los horarios están en formato de 24 horas!</p>
       <div class="row">
+        <h5>¿En qué horarios ofrece servicio <b>{{ publicacion.nombre | uppercase }}</b>?</h5>
+        <p>¡Note que los horarios están en formato de 24 horas!</p>
         <div class="input-field col s6">
           <input id="apertura" type="text" class="timepicker" (change)="horarioApertura()">
           <label for="apertura">Hora de apertura</label>
@@ -166,8 +178,8 @@
         </div>
       </div>
 
-      <h5>¿Qué precio promedio tiene <b>{{ publicacion.nombre | uppercase }}</b>?</h5>
-      <div class="row">
+      <div class="row" *ngIf="tipo_lugar !== 'discoteca'">
+        <h5>¿Qué precio promedio tiene <b>{{ publicacion.nombre | uppercase }}</b>?</h5>
         <div class="input-field col s12">
           <select>
             <option value="" disabled selected>Precio Promedio de {{ publicacion.nombre | uppercase }}</option>
@@ -176,44 +188,85 @@
         </div>
       </div>
 
-      <h5>¿Desea agregar fotos de {{ publicacion.nombre | uppercase }}?</h5>
-      <p> Si no agrega fotos, se pondrá una foto por defecto.</p>
-      <div class="file-field input-field">
-        <div class="btn">
-          <span>Subir Foto</span>
-          <input type="file">
-        </div>
-        <div class="file-path-wrapper">
-          <input class="file-path validate" type="text">
+      <div class="row" *ngIf="tipo_lugar !== 'discoteca'">
+        <h5>¿Alguna aclaración que desees hacer sobre <b>{{ publicacion.nombre | uppercase }}</b>?</h5>
+        <div class="input-field col s12">
+          <input id="notas" type="text" class="validate" name="notas" [(ngModel)]="publicacion.notas">
+          <label for="notas">Notas adicionales</label>
         </div>
       </div>
 
-      <button class="btn waves-effect waves-light right" type="submit" (click)="publicar()">Finalizar
-        <i class="material-icons right">publish</i>
-      </button>
-      
-      <button class="btn waves-effect waves-light left red" type="submit" (click)="anteriorPaso()">Atrás
-        <i class="material-icons left">arrow_back</i>
-      </button>
+    </form>
+
+    <!-- PASO 4 IMÁGENES Y VIDEOS DE LA PUBLICACIÓN -->
+    <form class="col s8 offset-m1" *ngIf="paso === 4">
+
+      <h5>Muéstranos un poco más de {{ publicacion.nombre | uppercase }}</h5>
+      <div class="row file-field input-field">
+        <div class="col s12">
+          <h5>¿Desea agregar fotos de {{ publicacion.nombre | uppercase }}?</h5>
+          <p> Si no agrega fotos, se pondrá una foto por defecto.</p>
+          <div class="btn">
+            <span>Subir Foto</span>
+            <input type="file">
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+          </div>
+        </div>
+      </div>
+
+      <div class="row input-field">
+        <div class="col s12">
+          <h5>¿Desea agregar videos de {{ publicacion.nombre | uppercase }}?</h5>
+          <div class="file-field">
+            <div class="btn">
+              <span>Subir Video</span>
+              <input type="file">
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text">
+            </div>
+          </div>
+          <div>
+            <p>O agrega la url del video!</p>
+            <div class="row">
+              <div class="input-field  col s10">
+                <input id="url" type="text" class="validate" [(ngModel)]="url_video" name="url">
+                <label for="url">Url del video</label>
+              </div>
+              <div class="col s2">
+                <button class="btn" (click)="agregarUrlVideo()">Agregar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </form>
-  
-  </div>
-</div>
 
-<div class="row">
-  <div class="col">
-    <button class="btn waves-effect waves-light left red" (click)="confirmacionCancelar()">Cancelar publicación
-      <i class="material-icons left">cancel</i>
-    </button>
   </div>
-</div>
-<!-- LUGAR EVENTO -->
-<div class="row" *ngIf="tipo_lugar === 'evento'">
-  <p>evento</p>
-</div>
+  <div class="row my10px">
+    <div class="col s8 offset-s4">
 
-<!-- LUGAR TURISMO -->
-<div class="row" *ngIf="tipo_lugar === 'turismo'">
-  <p>plan turístico</p>
+      <button class="btn right" *ngIf="paso === 4" type="submit" (click)="publicar()">Publicar
+        <i class="material-icons right">publish</i>
+      </button>
+
+      <button class="btn right" type="submit" *ngIf="paso < 4" (click)="siguientePaso()">Siguiente
+        <i class="material-icons right">send</i>
+      </button>
+
+      <button class="btn left red" type="submit" (click)="anteriorPaso()">Atrás
+        <i class="material-icons left">arrow_back</i>
+      </button>
+    </div>
+  </div>
+  <div class="row my10px">
+    <div class="col">
+      <button class="btn left red" (click)="confirmacionCancelar()">Cancelar publicación
+        <i class="material-icons left">cancel</i>
+      </button>
+    </div>
+  </div>
 </div>

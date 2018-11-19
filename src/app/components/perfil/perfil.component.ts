@@ -1,4 +1,3 @@
-import { Usuario } from './../../interfaces/usuario';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -44,6 +43,7 @@ export class PerfilComponent implements OnInit {
   perfil: boolean = true;
   info: boolean = true;
   publicacion: string = "evento";
+  tooltip;
 
   constructor(private router:Router) { }
 
@@ -55,20 +55,13 @@ export class PerfilComponent implements OnInit {
 
   inicializarMaterialize()
   {
-    /* tooltip */
-    var elems_tooltip = document.querySelectorAll('.tooltipped');
-    var instances_tooltip = M.Tooltip.init(elems_tooltip, {});
+    /* Tooltip */
+      var elems_tooltip = document.querySelectorAll('.tooltipped');
+      var instances_tooltip = M.Tooltip.init(elems_tooltip, {});
   }
 
   subirFoto()
   {
     
-  }
-
-  irPublicar()
-  {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-    this.router.navigate(['/publica']);
   }
 }

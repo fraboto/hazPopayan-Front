@@ -30,6 +30,31 @@ export class PublicarLugarComponent implements OnInit {
     "Otro"
   ];
 
+  subtipos_discoteca = [
+    "Crosssover",
+    "Despecho",
+    "Electrónica",
+    "Rancheras",
+    "Reggae",
+    "Salsa",
+    "Tropical",
+    "Vallenato"
+  ];
+
+  subtipos_bar = [
+    "Bohemio",
+    "Crossover",
+    "Despecho",
+    "Electrónica",
+    "Jazz/Blues",
+    "Pop",
+    "Rancheras",
+    "Reggae",
+    "Rock",
+    "Salsa",
+    "Tropical"
+  ];
+
   precios_promedio = [
     {"texto": "5.000 - 10.000", "promedio":7500},
     {"texto": "10.000 - 20.000", "promedio":15000},
@@ -66,8 +91,8 @@ export class PublicarLugarComponent implements OnInit {
     "descripcion": null,
     "tipo": null,
     "subtipo": null,
-    "imagenes": null,
-    "videos": null,
+    "imagenes": [],
+    "videos": [],
     "horario_apertura": null,
     "horario_cierre": null,
     "precio_promedio": null,
@@ -76,8 +101,11 @@ export class PublicarLugarComponent implements OnInit {
     "instagram": null,
     "twitter": null,
     "telefono": null,
-    "servicios": null
+    "servicios": [],
+    "notas": null
   };
+
+  url_video:string = null;
 
   constructor(private router:Router) { }
 
@@ -152,6 +180,12 @@ export class PublicarLugarComponent implements OnInit {
   {
     let confirmacion = confirm('¿Seguro que desea cancelar la publicación? Los datos ingresados se perderán');
     if (confirmacion) this.router.navigate(['/']);
+  }
+
+  agregarUrlVideo()
+  {
+    this.publicacion.videos.push(this.url_video);
+    this.url_video = null;
   }
 
   publicar()

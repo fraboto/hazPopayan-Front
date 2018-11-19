@@ -11,6 +11,8 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { PublicarComponent } from './components/publicar/publicar.component';
 import { PublicarEventoComponent } from './components/publicar-evento/publicar-evento.component';
 import { PublicarLugarComponent } from './components/publicar-lugar/publicar-lugar.component';
+import { PublicarTurismoComponent } from './components/publicar-turismo/publicar-turismo.component';
+import { PublicarPasosComponent } from './components/publicar-pasos/publicar-pasos.component';
 
 const appRoutes: Routes = [
   {path: '', component:HomeComponent},
@@ -30,7 +32,9 @@ const appRoutes: Routes = [
     PerfilComponent,
     PublicarComponent,
     PublicarEventoComponent,
-    PublicarLugarComponent
+    PublicarLugarComponent,
+    PublicarTurismoComponent,
+    PublicarPasosComponent
   ],
   imports: [
     BrowserModule,

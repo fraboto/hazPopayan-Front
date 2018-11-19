@@ -15,7 +15,7 @@
 		<div class="col m2 offset-m1">
 			<div class="card" (click)="tipo_publicacion = 'evento'">
 				<div class="card-image">
-					<img src="./../../../assets/imagenes/event.png">
+					<img src="./../../../assets/imagenes/evento.png">
 				</div>
 				<div class="card-content">
 					<span class="card-title center-align">Evento</span>
@@ -38,4 +38,5 @@
 	</div>
 	
 	<app-publicar-lugar *ngIf="tipo_publicacion === 'lugar'"></app-publicar-lugar>
+	<app-publicar-evento *ngIf="tipo_publicacion === 'evento'"></app-publicar-evento>
 </div>

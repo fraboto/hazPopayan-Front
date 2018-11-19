@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
+  tooltip;
+
   eventos: Publicacion[] = [
     {
       key: 0,
@@ -50,17 +52,6 @@ export class HomeComponent implements OnInit {
     /* Parallax */
       var elems_parallax = document.querySelectorAll('.parallax');
       var instances_parallax = M.Parallax.init(elems_parallax, {});
-
-    /* tooltip */
-      var elems_tooltip = document.querySelectorAll('.tooltipped');
-      var instances_tooltip = M.Tooltip.init(elems_tooltip, {});
-  }
-
-  irPublicar()
-  {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-    this.router.navigate(['/publica']);
   }
 
 }
