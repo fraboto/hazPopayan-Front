@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
 })
 export class PublicarLugarComponent implements OnInit {
 
-  tipo_publicacion = null;
   tipo_lugar = null;
   paso = 0;
 

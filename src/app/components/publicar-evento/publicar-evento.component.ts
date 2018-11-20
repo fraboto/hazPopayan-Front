@@ -69,29 +69,26 @@ export class PublicarEventoComponent implements OnInit {
     var instances_timepicker = M.Timepicker.init(elems_timepicker, {twelveHour: false});
   }
 
-  asignarLugar(id)
+  valoresSelect(id)
   {
     let materialize_select = document.querySelector('#'+id);
     var instance = M.FormSelect.getInstance(materialize_select);
-    if (instance.getSelectedValues().length === 1)
+    if(id === 'lugar-usuario')
     {
-      this.evento.lugar_id = instance.getSelectedValues();
-      this.evento.direccion = this.usuario_lugares.find((lugar) => { return lugar.id === +this.evento.lugar_id;}).direccion;
-      document.getElementById('label-direccion').setAttribute('class', "active");
+      if (instance.getSelectedValues().length === 1)
+      {
+        this.evento.lugar_id = instance.getSelectedValues();
+        this.evento.direccion = this.usuario_lugares.find((lugar) => { return lugar.id === +this.evento.lugar_id;}).direccion;
+        document.getElementById('label-direccion').setAttribute('class', "active");
+      }
+      else
+      {
+        this.evento.lugar_id = null;
+        this.evento.direccion = null;
+        document.getElementById('label-direccion').removeAttribute('class');
+      }
     }
-    else
-    {
-      this.evento.lugar_id = null;
-      this.evento.direccion = null;
-      document.getElementById('label-direccion').removeAttribute('class');
-    }
-  }
-
-  asignarTipo(id)
-  {
-    let materialize_select = document.querySelector('#'+id);
-    var instance = M.FormSelect.getInstance(materialize_select);
-    this.evento.tipo = instance.getSelectedValues();
+    else if (id === 'select-tipo') this.evento.tipo = instance.getSelectedValues();
   }
 
   horario()

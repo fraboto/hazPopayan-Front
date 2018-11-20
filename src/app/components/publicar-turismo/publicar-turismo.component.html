@@ -1,3 +1,235 @@
-<p>
-  publicar-turismo works!
-</p>
+<!-- LLENADO DE INFORMACIÓN DE LA PUBLICACIÓN -->
+<div class="row my20vh">
+  <div class="row">
+    <div class="col s2 offset-s1">
+      <img class="responsive-img" src="./../../../assets/imagenes/turismo.png">
+      <h5 class="center-align">Publica tu Plan Turístico</h5>
+    </div>
+
+    <!-- PASO 1 INFO GENERAL DE LA PUBLICACIÓN -->
+    <form class="col s8 offset-s1" *ngIf="paso === 1">
+
+      <h5>Información general sobre tu publicación</h5>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="nombre" type="text" class="validate" name="nombre" [(ngModel)]="turismo.nombre">
+          <label for="nombre">Nombre*</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="descripcion" class="materialize-textarea" [(ngModel)]="turismo.descripcion" name="descripcion"></textarea>
+          <label for="descripcion">Descripción del plan turístico*</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="direccion" type="text" class="validate" name="direccion" [(ngModel)]="turismo.direccion">
+          <label for="direccion">Dirección donde será el plan*</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <select multiple (change)="valoresSelect('select-tipo-plan')" id="select-tipo-plan">
+            <option value="" disabled selected>Tipo del Plan Turístico*</option>
+            <option *ngFor="let tipo of tipos_turismo" value="{{ tipo }}">{{ tipo }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="otro_tipo">
+        <div class="input-field col s12">
+          <input id="tipo" type="text" class="validate" name="tipo" [(ngModel)]="otro_tipo_txt">
+          <label for="tipo">¿Tu plan es de otro tipo? Cuéntanos, ¿Cuál/es?*</label>
+        </div>
+      </div>
+
+    </form>
+
+    <!-- PASO 2 INFO REDES SOCIALES DE LA PUBLICACIÓN -->
+    <form class="col s8 offset-m1" *ngIf="paso === 2">
+      <h5>Cuéntanos un poco más acerca de <b>{{ turismo.nombre | uppercase }}</b></h5>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="web" type="text" class="validate" name="web" [(ngModel)]="turismo.web">
+          <label for="web">Página Web</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="fb" type="text" class="validate" name="fb" [(ngModel)]="turismo.facebook">
+          <label for="fb">Facebook - nombre de usuario</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="ig" type="text" class="validate" name="ig" [(ngModel)]="turismo.instagram">
+          <label for="ig">Instagram - nombre de usuario</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="twt" type="text" class="validate" name="twt" [(ngModel)]="turismo.twitter">
+          <label for="twt">Twitter - nombre de usuario</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="telefono" type="number" class="validate" name="telefono" [(ngModel)]="turismo.telefono">
+          <label for="telefono">Teléfono</label>
+        </div>
+      </div>
+
+    </form>
+
+    <!-- PASO 3 INFO DETALLE (HORARIOS, IMÁGENES, VIDEOS, PRECIOS, SERVICIOS) DE LA PUBLICACIÓN -->
+    <form class="col s8 offset-m1" *ngIf="paso === 3">
+
+      <div class="row">
+        <h5>¿Qué servicios incluye el Plan Turístico?</h5>
+        <div class="input-field col s12">
+          <select multiple (change)="valoresSelect('select-servicios')" id="select-servicios">
+            <option value="" disabled selected>Servicios incluídos*</option>
+            <option *ngFor="let servicio of servicios_incluidos" value="{{ servicio }}">{{ servicio }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="otros_servicios">
+        <div class="input-field col s12">
+          <input id="servicios" type="text" class="validate" name="servicios" [(ngModel)]="otros_servicios_txt">
+          <label for="servicios">¿Tu plan incluye otros servicios? Cuéntanos, ¿Cuál/es?*</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <h5>¿A qué hora se realizará la actividad?</h5>
+        <p>¡Note que los horarios están en formato de 24 horas!</p>
+        <div class="input-field col s6" *ngIf="!servicio_continuo">
+          <input id="apertura" type="text" class="timepicker" (change)="horarioApertura()">
+          <label for="apertura">Hora comienzo</label>
+        </div>
+        <p>
+          <b>
+            <label for="servicio_continuo">
+              <input type="checkbox" id="servicio_continuo" [(ngModel)]="servicio_continuo" name="servicio_continuo" (change)="resetTimepicker()"/>
+              <span>¿Ofrecen servicio continuo?</span>
+            </label>
+          </b>
+        </p>
+        <div class="input-field col s6" *ngIf="servicio_continuo">
+          <input id="apertura" type="text" class="timepicker" (change)="horarioApertura()">
+          <label for="apertura">Hora comienzo servicio</label>
+        </div>
+        <div class="input-field col s6" *ngIf="servicio_continuo">
+          <input id="cierre" type="text" class="timepicker" (change)="horarioCierre()">
+          <label for="cierre">Hora finalización servicio</label>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="tipo_lugar !== 'discoteca'">
+        <h5>¿Qué fecha se realizará este plan turístico?</h5>
+        <div class="input-field col s12">
+          <input id="fecha" type="text" class="datepicker" (change)="asignarFecha()">
+          <label for="fecha">Fecha</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <h5>¿Qué precio tendrá asistir a <b>{{ turismo.nombre | uppercase }}</b>?</h5>
+        <div class="input-field col s12">
+          <input id="precio" type="number" class="validate" name="precio" [(ngModel)]="turismo.precio">
+          <label for="precio">Precio</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <h5>¿Alguna aclaración que desees hacer sobre este palan turístico?</h5>
+        <div class="input-field col s12">
+          <input id="notas" type="text" class="validate" name="notas" [(ngModel)]="turismo.notas">
+          <label for="notas">Notas adicionales</label>
+        </div>
+      </div>
+
+    </form>
+
+    <!-- PASO 4 IMÁGENES Y VIDEOS DE LA PUBLICACIÓN -->
+    <form class="col s8 offset-m1" *ngIf="paso === 4">
+
+      <h5>Muéstranos un poco más de {{ turismo.nombre | uppercase }}</h5>
+      <div class="row file-field input-field">
+        <div class="col s12">
+          <h5>¿Desea agregar fotos de {{ turismo.nombre | uppercase }}?</h5>
+          <p> Si no agrega fotos, se pondrá una foto por defecto.</p>
+          <div class="btn">
+            <span>Subir Foto</span>
+            <input type="file">
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+          </div>
+        </div>
+      </div>
+
+      <div class="row input-field">
+        <div class="col s12">
+          <h5>¿Desea agregar videos de {{ turismo.nombre | uppercase }}?</h5>
+          <div class="file-field">
+            <div class="btn">
+              <span>Subir Video</span>
+              <input type="file">
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text">
+            </div>
+          </div>
+          <div>
+            <p>O agrega la url del video!</p>
+            <div class="row">
+              <div class="input-field  col s10">
+                <input id="url" type="text" class="validate" [(ngModel)]="url_video" name="url">
+                <label for="url">Url del video</label>
+              </div>
+              <div class="col s2">
+                <button class="btn" (click)="agregarUrlVideo()">Agregar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+  <div class="row my10px">
+    <div class="col s8 offset-s4">
+
+      <button class="btn right" *ngIf="paso === 4" type="submit" (click)="publicar()">Publicar
+        <i class="material-icons right">publish</i>
+      </button>
+
+      <button class="btn right" type="submit" *ngIf="paso < 4" (click)="siguientePaso()">Siguiente
+        <i class="material-icons right">send</i>
+      </button>
+
+      <button class="btn left red" type="submit" (click)="anteriorPaso()">Atrás
+        <i class="material-icons left">arrow_back</i>
+      </button>
+    </div>
+  </div>
+  <div class="row my10px">
+    <div class="col">
+      <button class="btn left red" (click)="confirmacionCancelar()">Cancelar publicación
+        <i class="material-icons left">cancel</i>
+      </button>
+    </div>
+  </div>
+</div>

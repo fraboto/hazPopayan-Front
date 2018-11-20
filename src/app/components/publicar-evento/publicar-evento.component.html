@@ -20,7 +20,7 @@
       <div class="row" *ngIf="usuario_lugares">
         <div class="input-field col s12">
           <h5>¿Este evento se realizará en uno de tus lugares publicados?</h5>
-          <select multiple (change)="asignarLugar('lugar-usuario')" id="lugar-usuario">
+          <select multiple (change)="valoresSelect('lugar-usuario')" id="lugar-usuario">
             <option value="" disabled selected>Lugar</option>
             <option *ngFor="let lugar of usuario_lugares" value="{{ lugar.id }}">{{ lugar.nombre }}</option>
           </select>
@@ -36,7 +36,7 @@
 
       <div class="row">
         <div class="input-field col s12">
-          <select multiple (change)="asignarTipo('select-tipo')" id="select-tipo">
+          <select multiple (change)="valoresSelect('select-tipo')" id="select-tipo">
             <option value="" disabled selected>Tipo Evento*</option>
             <option *ngFor="let subtipo of tipos_evento" value="{{ subtipo }}">{{ subtipo }}</option>
           </select>
@@ -66,27 +66,27 @@
       <div class="row">
         <div class="input-field col s12">
           <input id="fb" type="text" class="validate" name="fb" [(ngModel)]="evento.facebook">
-          <label for="fb">Facebook</label>
+          <label for="fb">Facebook - Nombre de usuario</label>
         </div>
       </div>
 
       <div class="row">
         <div class="input-field col s12">
           <input id="ig" type="text" class="validate" name="ig" [(ngModel)]="evento.instagram">
-          <label for="ig">Instagram</label>
+          <label for="ig">Instagram - Nombre de usuario</label>
         </div>
       </div>
 
       <div class="row">
         <div class="input-field col s12">
           <input id="twt" type="text" class="validate" name="twt" [(ngModel)]="evento.twitter">
-          <label for="twt">Twitter</label>
+          <label for="twt">Twitter - Nombre de usuario</label>
         </div>
       </div>
 
       <div class="row">
         <div class="input-field col s12">
-          <input id="telefono" type="text" class="validate" name="telefono" [(ngModel)]="evento.telefono">
+          <input id="telefono" type="number" class="validate" name="telefono" [(ngModel)]="evento.telefono">
           <label for="telefono">Teléfono</label>
         </div>
       </div>
@@ -108,7 +108,7 @@
       <div class="row" *ngIf="tipo_lugar !== 'discoteca'">
         <h5>¿Qué precio tendrá la boleteria para asistir a <b>{{ evento.nombre | uppercase }}</b>?</h5>
         <div class="input-field col s12">
-          <input id="boleteria" type="text" class="validate" name="boleteria" [(ngModel)]="evento.boleteria">
+          <input id="boleteria" type="number" class="validate" name="boleteria" [(ngModel)]="evento.boleteria">
           <label for="boleteria">Precio boletería</label>
         </div>
       </div>
