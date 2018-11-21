@@ -36,6 +36,7 @@ export class PublicarTurismoComponent implements OnInit {
   ];
 
   turismo = {
+    "categoria": "turismo",
     "nombre": null,
     "descripcion": null,
     "direccion": null,

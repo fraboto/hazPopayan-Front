@@ -106,10 +106,26 @@
       </div>
 
       <div class="row" *ngIf="tipo_lugar !== 'discoteca'">
+        <h5>¿Qué fecha se realizará este evento?</h5>
+        <div class="input-field col s12">
+          <input id="fecha" type="text" class="datepicker" (change)="asignarFecha()">
+          <label for="fecha">Fecha</label>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="tipo_lugar !== 'discoteca'">
         <h5>¿Qué precio tendrá la boleteria para asistir a <b>{{ evento.nombre | uppercase }}</b>?</h5>
         <div class="input-field col s12">
-          <input id="boleteria" type="number" class="validate" name="boleteria" [(ngModel)]="evento.boleteria">
+          <input id="boleteria" type="number" class="validate" name="boleteria" [(ngModel)]="evento.precio_boleteria">
           <label for="boleteria">Precio boletería</label>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="tipo_lugar !== 'discoteca'">
+        <h5>¿Dónde se podrá comprar la boleteria para asistir a <b>{{ evento.nombre | uppercase }}</b>?</h5>
+        <div class="input-field col s12">
+          <input id="venta" type="text" class="validate" name="venta" [(ngModel)]="evento.boleteria">
+          <label for="venta">Venta Boletería</label>
         </div>
       </div>
 

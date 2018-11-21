@@ -85,6 +85,7 @@ export class PublicarLugarComponent implements OnInit {
   ];
 
   publicacion = {
+    "categoria": "lugar",
     "nombre": null,
     "direccion": null,
     "descripcion": null,

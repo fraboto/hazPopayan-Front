@@ -1,3 +1,75 @@
-<p>
-  detalle works!
-</p>
+<div class="container mt5p">
+  <div class="row">
+    <h4 class="center-align">{{ publicacion.nombre }}</h4>
+    <div class="col s12 m6 l4">
+      <div class="card">
+        <h5 class="center-align">Información general</h5>
+        <div *ngIf="publicacion.categoria === 'lugar'">
+          <p><i class="material-icons indigo-text">access_time</i><b> Horarios de servicio: </b> {{ publicacion.horario_apertura }} - {{ publicacion.horario_cierre }}</p>
+          <p><i class="material-icons indigo-text">location_on</i><b> Ubicación: </b> {{ publicacion.direccion }}</p>
+          <p><i class="material-icons indigo-text">attach_money</i><b> Precio promedio: </b> {{ publicacion.precio_promedio }}</p>
+        </div>
+        <div *ngIf="publicacion.categoria === 'evento'">
+          <p><i class="material-icons indigo-text">date_range</i><b> Fecha: </b>{{ publicacion.fecha | date:"mediumDate" }}</p>
+          <p><i class="material-icons indigo-text">access_time</i><b> Hora: </b>{{ publicacion.hora }}</p>
+          <p><i class="material-icons indigo-text">location_on</i><b> Ubicación: </b> {{ publicacion.direccion }}</p>
+          <p *ngIf="publicacion.precio"><i class="material-icons indigo-text">attach_money</i><b>Precio Boletería: </b>{{ publicacion.precio }}</p>
+          <p *ngIf="publicacion.boleteria"><i class="material-icons indigo-text">credit_card</i><b> Venta de boletería: </b>{{ publicacion.boleteria }}</p>
+        </div>
+        <div *ngIf="publicacion.categoria === 'turismo'">
+          <p *ngIf="publicacion.fecha"><i class="material-icons indigo-text">date_range</i><b> Fecha: </b>{{ publicacion.fecha | date:"mediumDate" }}</p>
+          <p><i class="material-icons indigo-text">access_time</i><b *ngIf="publicacion.horario_cierre"> Horarios de servicio: </b><b *ngIf="!publicacion.horario_cierre"> Hora: </b> {{ publicacion.horario_apertura }} <span *ngIf="publicacion.horario_cierre">- {{ publicacion.horario_cierre }}</span></p>
+          <p *ngIf="publicacion.direccion"><i class="material-icons indigo-text">location_on</i><b> Ubicación: </b> {{ publicacion.direccion }}</p>
+          <p *ngIf="publicacion.precio"><i class="material-icons indigo-text">attach_money</i><b> Precio: </b>{{ publicacion.precio }}</p>
+        </div>
+      </div>
+      <div class="card">
+        <h5 class="center-align">Mayor Información</h5>
+        <p *ngIf="publicacion.web"><i class="material-icons indigo-text">web</i> <a href="{{ publicacion.web }}"> {{ publicacion.web }}</a></p>
+        <p *ngIf="publicacion.telefono"><i class="material-icons indigo-text">local_phone</i><b> Teléfono: </b>{{ publicacion.telefono }}</p>
+        <h6 *ngIf="publicacion.facebook || publicacion.instagram || publicacion.twitter">Visítanos en:</h6>
+        <p>
+          <a href="www.facebook.com/{{ publicacion.facebook }}" *ngIf="publicacion.facebook"><i class="facebook icon">Facebook</i></a>
+          <a href="www.instagram.com/{{ publicacion.instagram }}" *ngIf="publicacion.instagram"><i class="instagram icon">Instagram</i></a>
+          <a href="www.twitter.com/{{ publicacion.twitter }}" *ngIf="publicacion.twitter"><i class="twitter icon">Twitter</i></a>
+        </p>
+      </div>
+    </div>
+    <div class="col s12 m6 l4">
+      <p><span class="btn btn-flat btn-small indigo white-text">{{ publicacion.tipo }}</span> <ng-container *ngIf="publicacion.categoria === 'lugar'"><span *ngFor="let subtipo of publicacion.subtipo" class="btn btn-flat btn-small indigo accent-2 white-text">{{ subtipo }}</span></ng-container></p>
+      <p>{{ publicacion.descripcion }}</p>
+      <div *ngIf="publicacion.categoria === 'lugar'">
+        <h6>Servicios que ofrecemos: </h6>
+        <p>{{ publicacion.servicios }}</p>
+      </div>
+      <div *ngIf="publicacion.categoria === 'turismo'">
+        <h6>Servicios incluídos en el precio: </h6>
+        <p>{{ publicacion.incluye }}</p>
+      </div>
+      <div *ngIf="publicacion.notas">
+        <h6>Notas del publicador: </h6>
+        <p>{{ publicacion.notas }}</p>
+      </div>
+    </div>
+    <div class="col s12 m6 l4">
+      <div class="row">
+        <div class="col s12">
+          <ul class="tabs">
+            <li class="tab col s6"><a class="active" href="#imagenes">Imágenes</a></li>
+            <li class="tab col s6"><a href="#videos">Videos</a></li>
+          </ul>
+        </div>
+        <div id="imagenes" class="col s12">
+          <!-- <div class="carousel carousel-slider">
+            <a class="carousel-item" href="#one!"><img src="{{ publicacion.imagenes[0] }}"></a>
+            <a class="carousel-item" href="#two!"><img src="{{ publicacion.imagenes[1] }}"></a>
+          </div> -->
+          <div class="carousel carousel-slider center">
+            <a href="" class="carousel-item"><img src="{{ publicacion.imagenes[0] }}" alt=""></a>
+          </div>
+        </div>
+        <div id="videos" class="col s12">Videos</div>
+      </div>
+    </div>
+  </div>
+</div>

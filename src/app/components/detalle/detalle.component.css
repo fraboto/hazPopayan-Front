@@ -1,0 +1,27 @@
+h5
+{
+    margin: 0.3rem 0;
+}
+
+.card
+{
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 2%;
+    padding-top: 2%;
+}
+
+.mt5p
+{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.btn-small
+{
+    margin-right: 1%;
+    height: 25px;
+    line-height: 25px;
+    font-size: 11px;
+    padding: 0 0.5rem;
+}

@@ -17,7 +17,7 @@ const appRoutes: Routes = [
   {path: '', component:HomeComponent},
   {path: 'home', component:HomeComponent},
   {path: 'perfil', component:PerfilComponent},
-  {path: 'detalle', component:DetalleComponent},
+  {path: 'detalle/:id', component:DetalleComponent},
   {path: 'login/:action', component:LoginComponent},
   {path: 'publica', component:PublicarComponent}
 ];

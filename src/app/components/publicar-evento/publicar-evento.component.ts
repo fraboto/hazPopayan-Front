@@ -12,6 +12,7 @@ export class PublicarEventoComponent implements OnInit {
   paso = 1;
 
   evento = {
+    "categoria": "evento",
     "nombre": null,
     "direccion": null,
     "descripcion": null,
@@ -19,6 +20,8 @@ export class PublicarEventoComponent implements OnInit {
     "imagenes": [],
     "videos": [],
     "hora": null,
+    "fecha": null,
+    "precio_boleteria": null,
     "boleteria": null,
     "web": null,
     "facebook": null,
@@ -67,6 +70,9 @@ export class PublicarEventoComponent implements OnInit {
 
     var elems_timepicker = document.querySelectorAll('.timepicker');
     var instances_timepicker = M.Timepicker.init(elems_timepicker, {twelveHour: false});
+
+    var elems_datepicker = document.querySelectorAll('.datepicker');
+    var instances = M.Datepicker.init(elems_datepicker, {});
   }
 
   valoresSelect(id)
@@ -95,6 +101,12 @@ export class PublicarEventoComponent implements OnInit {
   {
     var instance = M.Timepicker.getInstance(document.getElementById('apertura'));
     this.evento.hora = instance.time;
+  }
+
+  asignarFecha()
+  {
+    var instance = M.Datepicker.getInstance(document.getElementById('fecha'));
+    this.evento.fecha = instance.date;
   }
 
   siguientePaso()
