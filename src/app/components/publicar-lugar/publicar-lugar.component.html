@@ -219,17 +219,8 @@
       <div class="row input-field">
         <div class="col s12">
           <h5>¿Desea agregar videos de {{ publicacion.nombre | uppercase }}?</h5>
-          <div class="file-field">
-            <div class="btn">
-              <span>Subir Video</span>
-              <input type="file">
-            </div>
-            <div class="file-path-wrapper">
-              <input class="file-path validate" type="text">
-            </div>
-          </div>
           <div>
-            <p>O agrega la url del video!</p>
+            <p>Agrega la url del video!</p>
             <div class="row">
               <div class="input-field  col s10">
                 <input id="url" type="text" class="validate" [(ngModel)]="url_video" name="url">

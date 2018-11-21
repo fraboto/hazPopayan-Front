@@ -14,7 +14,7 @@ export class LugaresService {
       "descripcion": "Gran concierto de Mago de Oz por su gira de 30 años",
       "tipo": "Concierto",
       "imagenes": ["https://bit.ly/2S4CSzY"],
-      "videos": ["https://www.youtube.com/watch?v=JV8-fFpMnsk"],
+      "videos": ["https://www.youtube.com/watch?v=JV8-fFpMnsk", "https://www.youtube.com/watch?v=zbokauGV2b0"],
       "hora": "20:00",
       "fecha": new Date(),
       "precio_boleteria": 50000,

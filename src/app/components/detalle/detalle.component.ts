@@ -11,6 +11,8 @@ export class DetalleComponent implements OnInit {
 
   publicacion = null;
   id = null;
+  carrusel_img = false;
+  carrusel_vid = false;
 
   constructor(private lugaresService:LugaresService, private activatedRoute:ActivatedRoute) { }
 
@@ -19,16 +21,20 @@ export class DetalleComponent implements OnInit {
     document.documentElement.scrollTop = 0;
     this.id = this.activatedRoute.snapshot.params['id'];
     this.publicacion = this.lugaresService.getPublicationById(+this.id);
-    this.inicializarMaterialize();
+    if (this.publicacion.imagenes.length !== 0) this.carrusel_img = true;
+    else this.carrusel_img = false;
+    if (this.publicacion.videos.length !== 0) this.carrusel_vid = true;
+    else this.carrusel_vid = false;
+    setTimeout(this.inicializarMaterialize,1000);
   }
 
   inicializarMaterialize()
   {
     var elems_tabs = document.querySelectorAll('.tabs');
-    var instance = M.Tabs.init(elems_tabs, {});
+    var instances_tabs = M.Tabs.init(elems_tabs, {});
 
-    /* var elems_carousel = document.querySelectorAll('.carousel');
-    var instances = M.Carousel.init(elems_carousel, {fullWidth: true, indicators: true, dist: 0}); */
+    var elems_carousel = document.querySelectorAll('.carousel');
+    var instances_carousel = M.Carousel.init(elems_carousel, {fullWidth:true, indicators: true});
   }
 
 }
