@@ -1,9 +1,9 @@
 <div class="container mt5p">
   <div class="row">
-    <h4 class="center-align">{{ publicacion.nombre }}</h4>
+    <h3 class="center-align">{{ publicacion.nombre }}</h3>
     <div class="col s12 m6 l4">
       <div class="card">
-        <h5 class="center-align">Información general</h5>
+        <h5 class="center-align"><b class="red-text text-accent-1">Información general</b></h5>
         <div *ngIf="publicacion.categoria === 'lugar'">
           <p><i class="material-icons indigo-text">access_time</i><b> Horarios de servicio: </b> {{ publicacion.horario_apertura }} - {{ publicacion.horario_cierre }}</p>
           <p><i class="material-icons indigo-text">location_on</i><b> Ubicación: </b> {{ publicacion.direccion }}</p>
@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="card">
-        <h5 class="center-align">Mayor Información</h5>
+        <h5 class="center-align"><b class="red-text text-accent-1">Mayor Información</b></h5>
         <p *ngIf="publicacion.web"><i class="material-icons indigo-text">web</i> <a href="{{ publicacion.web }}"> {{ publicacion.web }}</a></p>
         <p *ngIf="publicacion.telefono"><i class="material-icons indigo-text">local_phone</i><b> Teléfono: </b>{{ publicacion.telefono }}</p>
         <h6 *ngIf="publicacion.facebook || publicacion.instagram || publicacion.twitter">Visítanos en:</h6>
@@ -59,19 +59,26 @@
             <li class="tab col s6" *ngIf="carrusel_vid"><a href="#videos">Videos</a></li>
           </ul>
         </div>
-        <div id="imagenes" class="col s12" *ngIf="carrusel_img">
-          <div class="carousel carousel-slider center" id="carousel">
-            <a class="carousel-item" *ngFor="let imagen of publicacion.imagenes"><img src="{{ imagen }}" alt=""></a>
+        <div>
+          <div id="imagenes" class="col s12" *ngIf="carrusel_img">
+            <div class="carousel carousel-slider center" id="carousel">
+              <a class="carousel-item" *ngFor="let imagen of publicacion.imagenes"><img src="{{ imagen }}" alt=""></a>
+            </div>
+          </div>
+          <div id="imagenes" class="col s12" *ngIf="!carrusel_img">
+            <img class="responsive-img" src="./../../../assets/imagenes/{{ publicacion.categoria }}.png" alt="">
+          </div>
+          <div class="center-align" *ngIf="publicacion.imagenes.length > 1">
+            <button class="btn btn-small btn-float waves-effect waves-light" (click)="anteriorImagen()">Anterior</button>
+            <button class="btn btn-small btn-float waves-effect waves-light" (click)="siguienteImagen()">Siguiente</button>
           </div>
         </div>
-        <div id="imagenes" class="col s12" *ngIf="!carrusel_img">
-          <img class="responsive-img" src="./../../../assets/imagenes/{{ publicacion.categoria }}.png" alt="">
-        </div>
         <div id="videos" class="col s12" *ngIf="carrusel_vid">
-          <!-- <div class="carousel carousel-slider center" id="carousel">
-            <a class="carousel-item" *ngFor="let video of publicacion.videos"><iframe src="{{ video }}" frameborder="0"></iframe>
-            </a>
-          </div> -->
+          <div class="carousel-item" [innerHtml]="videos_carrusel[video_activo]"></div>
+          <div class="center-align" *ngIf="videos_carrusel.length > 1">
+            <button class="btn btn-small btn-float waves-effect waves-light" (click)="anteriorVideo()">Anterior</button>
+            <button class="btn btn-small btn-float waves-effect waves-light" (click)="siguienteVideo()">Siguiente</button>
+          </div>
         </div>
       </div>
     </div>

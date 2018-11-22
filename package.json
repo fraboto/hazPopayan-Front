@@ -23,6 +23,7 @@
     "@types/materialize-css": "1.0.5",
     "core-js": "^2.5.4",
     "materialize-css": "1.0.0-rc.2",
+    "ngx-embed-video": "1.0.2",
     "rxjs": "^6.0.0",
     "zone.js": "~0.8.26"
   },

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import * as M from "materialize-css";
 import { Publicacion } from 'src/app/interfaces/publicacion';
 import { Router } from '@angular/router';
 
